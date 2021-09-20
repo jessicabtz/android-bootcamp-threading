@@ -16,27 +16,27 @@
         tools:context=".MainActivity">
 
         <Button
-            android:id="@+id/button_load_data"
-            android:text="Carregar"
+            android:id="@+id/btn_load_data"
+            android:text="@string/carregar"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="32dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/textview_data"
-            app:layout_constraintTop_toBottomOf="@id/button_load_data"
+            android:id="@+id/tv_data"
+            app:layout_constraintTop_toBottomOf="@id/btn_load_data"
             android:textSize="20sp"
             android:fontFamily="sans-serif-condensed"
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Nome Exemplo"
+            tools:text=" Exemplo "
             />
 
         <ProgressBar
-            android:id="@+id/progressbar_load_indicator"
-            app:layout_constraintTop_toBottomOf="@id/button_load_data"
+            android:id="@+id/pb_load_indicator"
+            app:layout_constraintTop_toBottomOf="@id/btn_load_data"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:visibility="gone"
