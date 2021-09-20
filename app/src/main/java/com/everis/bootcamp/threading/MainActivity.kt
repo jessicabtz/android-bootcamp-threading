@@ -13,22 +13,52 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //TODO: 018 - fazer o handle do clique do botão
+        btn_load_data.setOnClickListener {
+            launchAstrosTask()
+        }
     }
 
+    fun showData(list: List<AstroPeople>){
+        tv_data.text = ""
+        list?.forEach{people ->
+            tv_data.append("${people.name} - ${people.craft} \n\n")
+        }
+    }
 
-    //TODO: 013 - Criar função para exibir os dados carregados
+    fun showProgressBar(){
+        pb_load_indicator.visibility = View.VISIBLE
 
+    }
 
-    //TODO: 014 - Criar função para exibir a ProgressBar
+    fun hideProgressBar(){
+        pb_load_indicator.visibility = View.GONE
 
+    }
 
-    //TODO: 015 - Criar função para esconder a ProgressBar
+    fun launchAstrosTask(){
+        val task = TaskAtros()
+        task.execute()
+    }
 
+    inner class TaskAtros(): AsyncTask<Void, Int, List<AstroPeople>>(){
+        val repository =  AstrosRepository()
 
-    //TODO: 017 - Criar função para lançar a Task
+        override fun onPreExecute() {
+            super.onPreExecute()
+            showProgressBar()
+        }
 
+        override fun doInBackground(vararg p0: Void?): List<AstroPeople> {
+            return repository.loadData()
+        }
 
-    //TODO: 016 - Criar classe interna para rodar a tarefa assincrona
+        override fun onPostExecute(result: List<AstroPeople>?) {
+            super.onPostExecute(result)
+            hideProgressBar()
+            if (result != null) {
+                showData(result)
+            }
+        }
+    }
 
 }
